@@ -71,7 +71,17 @@ namespace FirstTeamScouter_Server
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            try
+            {
+                Form1 frm = new Form1();
+                Application.Run(frm);
+            }
+            catch (Exception)
+            {
+                Console.Out.WriteLine("Could not create form due to database issues");
+            }
+            
         }
 
         

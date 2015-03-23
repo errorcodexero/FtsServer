@@ -33,6 +33,7 @@
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnRefreshData = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridMatchList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.gridMatchList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMatchList.Location = new System.Drawing.Point(12, 53);
             this.gridMatchList.Name = "gridMatchList";
-            this.gridMatchList.Size = new System.Drawing.Size(764, 403);
+            this.gridMatchList.Size = new System.Drawing.Size(764, 375);
             this.gridMatchList.TabIndex = 10;
             // 
             // lblMatchList
@@ -64,7 +65,7 @@
             // 
             // btnAddMatch
             // 
-            this.btnAddMatch.Location = new System.Drawing.Point(38, 486);
+            this.btnAddMatch.Location = new System.Drawing.Point(38, 457);
             this.btnAddMatch.Name = "btnAddMatch";
             this.btnAddMatch.Size = new System.Drawing.Size(104, 37);
             this.btnAddMatch.TabIndex = 12;
@@ -74,7 +75,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(662, 486);
+            this.btnClose.Location = new System.Drawing.Point(662, 457);
             this.btnClose.Name = "btnClose";
             this.btnClose.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnClose.Size = new System.Drawing.Size(104, 37);
@@ -85,7 +86,7 @@
             // 
             // btnRefreshData
             // 
-            this.btnRefreshData.Location = new System.Drawing.Point(318, 486);
+            this.btnRefreshData.Location = new System.Drawing.Point(318, 457);
             this.btnRefreshData.Name = "btnRefreshData";
             this.btnRefreshData.Size = new System.Drawing.Size(104, 37);
             this.btnRefreshData.TabIndex = 12;
@@ -93,11 +94,24 @@
             this.btnRefreshData.UseVisualStyleBackColor = true;
             this.btnRefreshData.Click += new System.EventHandler(this.btnRefreshData_Click);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Enabled = false;
+            this.lblStatus.Location = new System.Drawing.Point(12, 529);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.TabIndex = 13;
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 546);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRefreshData);
             this.Controls.Add(this.btnAddMatch);
@@ -118,6 +132,7 @@
         private System.Windows.Forms.Button btnAddMatch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRefreshData;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
 
