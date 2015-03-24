@@ -15,49 +15,32 @@ namespace FirstTeamScouter_Server
         public Form1()
         {
             InitializeComponent();
+            LoadCompetitions();
             LoadData();
         }
 
-        public void LoadData()
+        public void LoadCompetitions()
         {
             MySqlConnection connection = new MySqlConnection(Program.conString);
             MySqlCommand cmd;
-            bool connectionAvailable = true;
-
-            try
-            {
-                connection.Open();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException)
-            {
-                string message = "Unable to open MySQL connection - check if the database is installed and running!";
-                Console.Out.WriteLine(message);
-                lblStatus.Text = message;
-                connectionAvailable = false;
-            }
-            catch (Exception)
-            {
-                string message = "Unknown issue at open - check if the database is installed and running!";
-                Console.Out.WriteLine(message);
-                lblStatus.Text = message;
-                connectionAvailable = false;
-            }
+            bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
             if (connectionAvailable)
             {
                 try
                 {
                     cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT match_number, match_time, match_type, match_location, red_team_one_id, red_team_two_id, red_team_three_id, blue_team_one_id, blue_team_two_id, blue_team_three_id FROM match_data";
+                    cmd.CommandText = "SELECT _id, competition_name, competition_location FROM competition_data";
                     MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
                     adap.Fill(ds);
-                    gridMatchList.DataSource = ds.Tables[0].DefaultView;
+                    cmbCompetitionName.DataSource = ds.Tables[0].DefaultView;
+                    cmbCompetitionName.ValueMember = "_id";
+                    cmbCompetitionName.DisplayMember = "competition_name";
                 }
                 catch (MySql.Data.MySqlClient.MySqlException)
                 {
                     Console.Out.WriteLine("Unable to open MySQL connection - check if the database is installed and running!");
-                    //this.Close();
                 }
                 catch (Exception)
                 {
@@ -71,12 +54,55 @@ namespace FirstTeamScouter_Server
                     }
                 }
             }
-            
+        }
+
+        public void LoadData()
+        {
+            long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
+
+            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlCommand cmd;
+            bool connectionAvailable = Utils.openConnection(connection, lblStatus);
+
+            if (connectionAvailable)
+            {
+                try
+                {
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = "SELECT match_number, match_time, match_type, match_location," +
+                        " red_team_one_id, red_team_two_id, red_team_three_id, blue_team_one_id, blue_team_two_id, blue_team_three_id" +
+                        " FROM match_data" +
+                        " WHERE competition_id=" + compID;
+                    MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
+                    
+                    DataSet ds = new DataSet();
+                    adap.Fill(ds);
+                    gridMatchList.DataSource = ds.Tables[0].DefaultView;
+                }
+                catch (MySql.Data.MySqlClient.MySqlException)
+                {
+                    string message = "Unable to open MySQL connection - check if the database is installed and running!";
+                    Console.Out.WriteLine(message);
+                    lblStatus.Text = message;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
         }
 
         private void btnAddMatch_Click(object sender, EventArgs e)
         {
-            AddMatchForm amForm = new AddMatchForm();
+            long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
+            AddMatchForm amForm = new AddMatchForm(compID);
             amForm.Show();
             //this.LoadData();
         }
@@ -89,6 +115,32 @@ namespace FirstTeamScouter_Server
         private void btnRefreshData_Click(object sender, EventArgs e)
         {
             this.LoadData();
+        }
+
+        private void cmbCompetitionName_SelectedValueChanged(object sender, EventArgs e)
+        {
+            object val = cmbCompetitionName.SelectedValue;
+            if (val.GetType() != typeof(DataRowView))
+            {
+                if (Convert.ToInt64(val) >= 0)
+                {
+                    this.LoadData();
+                }
+            }
+        }
+
+        private void btnExportData_Click(object sender, EventArgs e)
+        {
+            long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
+            ExportDataForm exportForm = new ExportDataForm(compID);
+            exportForm.Show();
+        }
+
+        private void btnImportData_Click(object sender, EventArgs e)
+        {
+            long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
+            ImportDataForm importForm = new ImportDataForm(compID);
+            importForm.Show();
         }
     }
 }

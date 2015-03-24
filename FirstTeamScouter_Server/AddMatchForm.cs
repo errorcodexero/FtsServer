@@ -12,8 +12,10 @@ namespace FirstTeamScouter_Server
 {
     public partial class AddMatchForm : Form
     {
-        public AddMatchForm()
+        private long compID;
+        public AddMatchForm(long competition_id)
         {
+            this.compID = competition_id;
             InitializeComponent();
         }
 
@@ -47,7 +49,7 @@ namespace FirstTeamScouter_Server
                 "@redTeamOneId, @redTeamTwoId, @redTeamThreeId, @blueTeamOneId, @blueTeamTwoId, @blueTeamThreeId, @readyToExport)";
 
                 cmd.Parameters.AddWithValue("@tabletID", 0);
-                cmd.Parameters.AddWithValue("@competitionID", 1);
+                cmd.Parameters.AddWithValue("@competitionID", this.compID);
                 cmd.Parameters.AddWithValue("@matchNumber", int.Parse(txtMatchNumber.Text));
                 cmd.Parameters.AddWithValue("@matchType", txtMatchType.Text);
                 cmd.Parameters.AddWithValue("@matchTime", txtMatchTime.Text);
