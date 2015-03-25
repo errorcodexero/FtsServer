@@ -109,7 +109,7 @@ namespace FirstTeamScouter_Server
                         DataSet ds = new DataSet();
                         adap.Fill(ds);
 
-                        string path = this.exportPath + "\\" + table + "-export.xml";
+                        string path = this.exportPath + "\\ftsData-" + table + "-export.xml";
                         if (File.Exists(path)) File.Delete(path);
                         var fileStream = new FileStream(path, FileMode.Create);
                         ds.WriteXml(fileStream);
