@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportDataForm));
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbCompetitionName = new System.Windows.Forms.ComboBox();
             this.lblCompetitionName = new System.Windows.Forms.Label();
@@ -195,6 +196,7 @@
             this.Controls.Add(this.cmbCompetitionName);
             this.Controls.Add(this.lblCompetitionName);
             this.Controls.Add(this.lblImportData);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ImportDataForm";
             this.Text = "ImportDataForm";
             this.ResumeLayout(false);

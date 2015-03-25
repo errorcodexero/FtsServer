@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMatchForm));
             this.lblMatchNumber = new System.Windows.Forms.Label();
             this.txtMatchNumber = new System.Windows.Forms.TextBox();
             this.txtMatchTime = new System.Windows.Forms.TextBox();
@@ -241,6 +242,7 @@
             this.Controls.Add(this.lblMatchTime);
             this.Controls.Add(this.txtMatchNumber);
             this.Controls.Add(this.lblMatchNumber);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddMatchForm";
             this.Text = "AddMatchForm";
             this.ResumeLayout(false);

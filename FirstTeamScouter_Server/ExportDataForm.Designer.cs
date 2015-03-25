@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportDataForm));
             this.btnClose = new System.Windows.Forms.Button();
             this.cmbCompetitionName = new System.Windows.Forms.ComboBox();
             this.lblCompetitionName = new System.Windows.Forms.Label();
@@ -171,6 +172,7 @@
             this.Controls.Add(this.btnExportSelected);
             this.Controls.Add(this.btnSetPath);
             this.Controls.Add(this.btnClose);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExportDataForm";
             this.Text = "frmExportData";
             this.ResumeLayout(false);
