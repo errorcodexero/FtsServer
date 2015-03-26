@@ -69,10 +69,27 @@ namespace FirstTeamScouter_Server
                 try
                 {
                     cmd = connection.CreateCommand();
-                    cmd.CommandText = "SELECT match_number, match_time, match_type, match_location," +
+                    
+                    string query = "SELECT match_number AS 'Match Number'," +
+		            " match_time AS 'Match Time'," +
+                    " match_type AS 'Match Type'," +
+                    " match_location AS 'Match Location'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.blue_team_one_id) AS 'Blue One'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.blue_team_two_id) AS 'Blue Two'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.blue_team_three_id) AS 'Blue Three'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.red_team_one_id) AS 'Red One'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.red_team_two_id) AS 'Red Two'," +
+                    " (SELECT team_data.team_number FROM team_data WHERE team_data._id = match_data.red_team_three_id) AS 'Red Three'" +
+                    " FROM match_data" +
+                    " WHERE competition_id=" + compID;
+
+                    cmd.CommandText = query;
+                    /*cmd.CommandText = "SELECT match_number, match_time, match_type, match_location," +
                         " red_team_one_id, red_team_two_id, red_team_three_id, blue_team_one_id, blue_team_two_id, blue_team_three_id" +
                         " FROM match_data" +
                         " WHERE competition_id=" + compID;
+                     */
+ 
                     MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
                     
                     DataSet ds = new DataSet();
@@ -119,13 +136,10 @@ namespace FirstTeamScouter_Server
 
         private void cmbCompetitionName_SelectedValueChanged(object sender, EventArgs e)
         {
-            object val = cmbCompetitionName.SelectedValue;
-            if (val.GetType() != typeof(DataRowView))
+            long val = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
+            if (val >= 0)
             {
-                if (Convert.ToInt64(val) >= 0)
-                {
-                    this.LoadData();
-                }
+                this.LoadData();
             }
         }
 

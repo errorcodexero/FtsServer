@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace FirstTeamScouter_Server
 {
@@ -37,23 +38,31 @@ namespace FirstTeamScouter_Server
 
         public static long getLongIDFromComboSelectedValue(ComboBox combo, Label lblStatus)
         {
-            long compID = -1;
+            long ID = -1;
+            
             try
             {
-                object id = combo.SelectedValue;
-                compID = Convert.ToInt64(id);
+                object val = combo.SelectedValue;
+                if (val.GetType() != typeof(DataRowView))
+                {
+                    ID = Convert.ToInt64(val);
+                }
+                
             }
             catch (Exception)
             {
-                if (compID == -1)
+                if (ID == -1)
                 {
                     string message = "Selected Value failed conversion to long for: " + combo.Name;
                     Console.Out.WriteLine(message);
-                    lblStatus.Text = message;
+                    if (lblStatus != null)
+                    {
+                        lblStatus.Text = message;
+                    }
                 }
-                throw;
+                //throw;
             }
-            return compID;
+            return ID;
         }
     }
 }
