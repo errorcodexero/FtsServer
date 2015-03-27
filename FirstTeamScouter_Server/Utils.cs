@@ -43,7 +43,7 @@ namespace FirstTeamScouter_Server
             try
             {
                 object val = combo.SelectedValue;
-                if (val.GetType() != typeof(DataRowView))
+                if ((val != null) && (val.GetType() != typeof(DataRowView)))
                 {
                     ID = Convert.ToInt64(val);
                 }

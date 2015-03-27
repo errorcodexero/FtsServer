@@ -35,6 +35,7 @@ namespace FirstTeamScouter_Server
             items.Add("match_data");
             items.Add("robot_data");
             items.Add("team_data");
+            items.Add("team_match");
 
             chkTableList.Refresh();
         }

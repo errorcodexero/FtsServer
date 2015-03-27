@@ -103,13 +103,12 @@ namespace FirstTeamScouter_Server
 
         private void btnImportSelected_Click(object sender, EventArgs e)
         {
-            CheckedListBox.CheckedItemCollection checkedStuff = chkFileList.CheckedItems;
-            lblStatus.Text = "Items checked: " + checkedStuff.Count;
+            CheckedListBox.CheckedItemCollection stuffToImport = chkFileList.CheckedItems;
+            lblStatus.Text = "Items checked: " + stuffToImport.Count;
 
-            //foreach (string fileName in checkedStuff)
-            for(int i = 0; i < checkedStuff.Count; i++)
+            for (int i = 0; i < stuffToImport.Count; i++)
             {
-                string fileName = checkedStuff[i].ToString();
+                string fileName = stuffToImport[i].ToString();
                 Console.Out.WriteLine("Importing " + fileName);
 
                 long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
@@ -130,7 +129,7 @@ namespace FirstTeamScouter_Server
                     try
                     {
                         cmd = connection.CreateCommand();
-                        
+
                         DataTable dt = ds.Tables["table"];
                         string tableName = (dt.Columns.Count > 1) ? dt.Rows[0][1].ToString() : "";
                         Console.Out.WriteLine("Table Name: " + tableName);
@@ -139,16 +138,18 @@ namespace FirstTeamScouter_Server
                         {
                             string prefix = "INSERT INTO " + tableName + "(";
                             string postfix = ") VALUES(";
-                            
+
                             int cnt = dataTable.Rows[0].Table.Columns.Count - 1;
-                            string[] columns = new string[cnt];
+                            string[] colParams = new string[cnt];
                             for (int col = 0; col < cnt; col++)
                             {
                                 var column = dataTable.Rows[0].Table.Columns[col];
-                                columns[col] = column.ToString();
                                 Console.Out.WriteLine("Column: " + column);
                                 prefix += column;
-                                postfix += "@" + column;
+
+                                string colParam = "@" + column;
+                                postfix += colParam;
+                                colParams[col] = colParam;
 
                                 if (col != cnt - 1)
                                 {
@@ -164,17 +165,26 @@ namespace FirstTeamScouter_Server
                             cmd.CommandText = prefix + postfix;
                             cmd.Prepare();
 
+                            int numRows = 0;
+                            for (int col = 0; col < dataTable.Rows[0].Table.Columns.Count - 1; col++)
+                            {
+                                var param = colParams[col];
+                                var val = dataTable.Rows[0][col];
+                                cmd.Parameters.AddWithValue(param, val);
+                            }
                             foreach (DataRow dataRow in dataTable.Rows)
                             {
                                 for (int col = 0; col < dataRow.Table.Columns.Count - 1; col++)
                                 {
-                                    var param = columns[col];
-                                    var val = dataRow[col];
-                                    cmd.Parameters.AddWithValue(param, val);
+                                    //var param = colParams[col];
+                                    //var val = dataRow[col];
+                                    //cmd.Parameters.AddWithValue(param, val);
+                                    cmd.Parameters[colParams[col]].Value = dataRow[col];
                                 }
+                                numRows += cmd.ExecuteNonQuery();
                             }
 
-                            int numRows = cmd.ExecuteNonQuery();
+                            //int numRows = cmd.ExecuteNonQuery();
                             if (numRows > 0)
                             {
                                 string backupPath = importPath + "\\backup";
@@ -185,7 +195,7 @@ namespace FirstTeamScouter_Server
                                     {
                                         Directory.CreateDirectory(backupPath);
                                     }
-                                    if(File.Exists(backupFilePath))
+                                    if (File.Exists(backupFilePath))
                                     {
                                         File.Delete(backupFilePath);
                                     }
@@ -196,7 +206,7 @@ namespace FirstTeamScouter_Server
                             }
                         }
 
-                        ///TODO - FINISH IMPLIMENTING THIS
+                        ///TODO - FINISH IMPLIMENTING THIS ??? WHAT'S LEFT TO DO ???
                     }
                     catch (MySql.Data.MySqlClient.MySqlException ex)
                     {
