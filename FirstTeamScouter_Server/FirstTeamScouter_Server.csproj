@@ -96,7 +96,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLInsertFactory.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Utilities\MySQL_ErrorCodes.cs" />
+    <Compile Include="Utilities\Utils.cs" />
     <EmbeddedResource Include="AddMatchForm.resx">
       <DependentUpon>AddMatchForm.cs</DependentUpon>
     </EmbeddedResource>
