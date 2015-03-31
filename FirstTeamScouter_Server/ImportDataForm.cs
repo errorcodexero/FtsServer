@@ -21,6 +21,7 @@ namespace FirstTeamScouter_Server
         private static string[] tabletSpecificTables = {
                                                            "notes_data",
                                                            "picture_data",
+                                                           "robot_data",
                                                            "team_match_transaction"
                                                        };
 
@@ -202,9 +203,6 @@ namespace FirstTeamScouter_Server
                         {
                             for (int col = 0; col < dataRow.Table.Columns.Count - 1; col++)
                             {
-                                //var param = colParams[col];
-                                //var val = dataRow[col];
-                                //cmd.Parameters.AddWithValue(param, val);
                                 cmd.Parameters[colParams[col]].Value = dataRow[col];
                             }
                             numRows += cmd.ExecuteNonQuery();
@@ -287,20 +285,25 @@ namespace FirstTeamScouter_Server
 
                         string prefix = "UPDATE " + tableName + " SET ";
                         string postfix = " WHERE _id=@_id";
-                        
+
                         if(tabletSpecificTables.Contains<string>(tableName))
                         {
                             postfix += " AND tablet_id=@tablet_id";
                         }
 
+                        string insertPrefix = "INSERT INTO " + tableName + "(";
+                        string insertPostfix = ") VALUES(";
+                        
                         int cnt = dataTable.Rows[0].Table.Columns.Count - 1;
                         string[] colParams = new string[cnt];
                         for (int col = 0; col < cnt; col++)
                         {
                             var column = dataTable.Rows[0].Table.Columns[col];
                             Console.Out.WriteLine("Column: " + column);
+                            insertPrefix += column;
                             
                             string colParam = "@" + column;
+                            insertPostfix += colParam;
                             colParams[col] = colParam;
                             
                             string tuple = column + " = " + colParam;
@@ -311,6 +314,12 @@ namespace FirstTeamScouter_Server
                             if (col != cnt - 1)
                             {
                                 prefix += ", ";
+                                insertPrefix += ", ";
+                                insertPostfix += ", ";
+                            }
+                            else
+                            {
+                                insertPostfix += ")";
                             }
                         }
 
@@ -323,6 +332,7 @@ namespace FirstTeamScouter_Server
                         {
                             var param = colParams[col];
                             var val = dataTable.Rows[0][col];
+                            val = (val == null || ((string)val).Equals("")) ? "NO VALUE" : val;
                             cmd.Parameters.AddWithValue(param, val);
                         }
                         foreach (DataRow dataRow in dataTable.Rows)
@@ -333,6 +343,22 @@ namespace FirstTeamScouter_Server
                                 cmd.Parameters[colParams[col]].Value = dataRow[col];
                             }
                             numRowsUpdated += cmd.ExecuteNonQuery();
+
+                            if (numRows != numRowsUpdated)
+                            {
+                                cmd.CommandText = insertPrefix + insertPostfix;
+                                cmd.ExecuteNonQuery();
+                                long id = cmd.LastInsertedId;
+                                if (id != -1)
+                                {
+                                    lblStatus.Text = "Row could not be updated, but was inserted";
+                                    numRowsUpdated++;
+                                }
+                                else
+                                {
+                                    lblStatus.Text = "Row could not be updated NOR inserted";
+                                }
+                            }
                         }
 
                         if (numRows == numRowsUpdated)
@@ -348,7 +374,7 @@ namespace FirstTeamScouter_Server
                 }
                 catch (MySql.Data.MySqlClient.MySqlException ex)
                 {
-                    string reason = (mySQLErrors.errorCodes.ContainsKey(ex.Number)) ? mySQLErrors.errorCodes[ex.Number] : "check if the database is installed and running!";
+                    string reason = (mySQLErrors.errorCodes.ContainsKey(ex.Number)) ? mySQLErrors.errorCodes[ex.Number] : "Error Code: " + ex.Number;
 
                     string message = "Unable to open MySQL connection - " + reason;
                     Console.Out.WriteLine(message);
