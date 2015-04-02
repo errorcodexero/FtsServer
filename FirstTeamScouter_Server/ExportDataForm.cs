@@ -47,7 +47,7 @@ namespace FirstTeamScouter_Server
 
         public void LoadCompetitions()
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -94,7 +94,7 @@ namespace FirstTeamScouter_Server
 
                 long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
 
-                MySqlConnection connection = new MySqlConnection(Program.conString);
+                MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
                 MySqlCommand cmd;
                 bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 

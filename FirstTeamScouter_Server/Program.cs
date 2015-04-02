@@ -11,10 +11,10 @@ namespace FirstTeamScouter_Server
 {
     static class Program
     {
-        // globals  
+        // globals
 
-        //public static List<person> people = new List<person> { };
-        
+        public static Boolean TEST_MODE = true;
+
         public static long id = -1, tablet_id = -1;
         public static int team_number = -1, team_sub_number = -1, num_team_members = -1, team_creation_year = -1;
         public static string team_name = "", team_city = "", team_state = "";
@@ -26,6 +26,13 @@ namespace FirstTeamScouter_Server
             "uid=ftsscout;" +
             "pwd=ftsscouter;" +
             "database=firstteamscouter;";
+
+        public static String conTestString =
+            "server=localhost;" +
+            "port=3306;" +
+            "uid=ftsscout;" +
+            "pwd=ftsscouter;" +
+            "database=firstteamscouter_test;";
 
         /// <summary>
         /// The main entry point for the application.

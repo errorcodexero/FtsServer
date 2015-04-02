@@ -58,7 +58,7 @@ namespace FirstTeamScouter_Server
 
         public void LoadCompetitions()
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -146,7 +146,7 @@ namespace FirstTeamScouter_Server
         {
             DataSet ds = getXmlDataSet(filePath);
 
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -266,7 +266,7 @@ namespace FirstTeamScouter_Server
         {
             DataSet ds = getXmlDataSet(filePath);
 
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -544,7 +544,7 @@ namespace FirstTeamScouter_Server
                     ds.ReadXml(filePath);
                 }
 
-                MySqlConnection connection = new MySqlConnection(Program.conString);
+                MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
                 MySqlCommand cmd;
                 bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 

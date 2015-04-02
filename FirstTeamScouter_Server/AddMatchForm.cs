@@ -29,7 +29,7 @@ namespace FirstTeamScouter_Server
 
         public void LoadCompetitions()
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -84,7 +84,7 @@ namespace FirstTeamScouter_Server
 
         public void LoadTeams()
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -147,7 +147,7 @@ namespace FirstTeamScouter_Server
 
         private void SaveData(bool exit)
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool saved = true, validated = true;
             long[] teamIDs = new long[]{-1, -1, -1, -1, -1, -1};

@@ -17,11 +17,16 @@ namespace FirstTeamScouter_Server
             InitializeComponent();
             LoadCompetitions();
             LoadData();
+
+            if (Program.TEST_MODE)
+            {
+                lblTestMode.Text = " **** TEST MODE ****";
+            }
         }
 
         public void LoadCompetitions()
         {
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -60,7 +65,7 @@ namespace FirstTeamScouter_Server
         {
             long compID = Utils.getLongIDFromComboSelectedValue(cmbCompetitionName, lblStatus);
 
-            MySqlConnection connection = new MySqlConnection(Program.conString);
+            MySqlConnection connection = new MySqlConnection(Utils.getConnectionString());
             MySqlCommand cmd;
             bool connectionAvailable = Utils.openConnection(connection, lblStatus);
 
@@ -84,11 +89,6 @@ namespace FirstTeamScouter_Server
                     " WHERE competition_id=" + compID;
 
                     cmd.CommandText = query;
-                    /*cmd.CommandText = "SELECT match_number, match_time, match_type, match_location," +
-                        " red_team_one_id, red_team_two_id, red_team_three_id, blue_team_one_id, blue_team_two_id, blue_team_three_id" +
-                        " FROM match_data" +
-                        " WHERE competition_id=" + compID;
-                     */
  
                     MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
                     

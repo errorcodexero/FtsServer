@@ -10,6 +10,12 @@ namespace FirstTeamScouter_Server
 {
     class Utils
     {
+        public static String getConnectionString()
+        {
+            String connectionString = (Program.TEST_MODE) ? Program.conTestString : Program.conString;
+            return connectionString;
+        }
+
         public static bool openConnection(MySqlConnection connection, Label lblStatus)
         {
             bool connectionAvailable = true;
