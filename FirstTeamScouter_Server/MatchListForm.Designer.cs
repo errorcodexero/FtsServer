@@ -1,6 +1,6 @@
 ﻿namespace FirstTeamScouter_Server
 {
-    partial class Form1
+    partial class MatchListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchListForm));
             this.gridMatchList = new System.Windows.Forms.DataGridView();
             this.lblMatchList = new System.Windows.Forms.Label();
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnRefreshData = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.lblCompetition = new System.Windows.Forms.Label();
-            this.lblCompetitionName = new System.Windows.Forms.Label();
-            this.cmbCompetitionName = new System.Windows.Forms.ComboBox();
             this.btnExportData = new System.Windows.Forms.Button();
             this.btnImportData = new System.Windows.Forms.Button();
             this.lblTestMode = new System.Windows.Forms.Label();
+            this.lblCompetitionValue = new System.Windows.Forms.Label();
+            this.lblSeasonValue = new System.Windows.Forms.Label();
+            this.btnSetCompetition = new System.Windows.Forms.Button();
+            this.btnSetSeason = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridMatchList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             this.gridMatchList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridMatchList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridMatchList.Location = new System.Drawing.Point(16, 185);
-            this.gridMatchList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridMatchList.Margin = new System.Windows.Forms.Padding(4);
             this.gridMatchList.Name = "gridMatchList";
             this.gridMatchList.Size = new System.Drawing.Size(1019, 342);
             this.gridMatchList.TabIndex = 10;
@@ -75,7 +76,7 @@
             // btnAddMatch
             // 
             this.btnAddMatch.Location = new System.Drawing.Point(51, 562);
-            this.btnAddMatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddMatch.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddMatch.Name = "btnAddMatch";
             this.btnAddMatch.Size = new System.Drawing.Size(139, 46);
             this.btnAddMatch.TabIndex = 12;
@@ -86,7 +87,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(883, 562);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnClose.Size = new System.Drawing.Size(139, 46);
@@ -98,7 +99,7 @@
             // btnRefreshData
             // 
             this.btnRefreshData.Location = new System.Drawing.Point(212, 562);
-            this.btnRefreshData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefreshData.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefreshData.Name = "btnRefreshData";
             this.btnRefreshData.Size = new System.Drawing.Size(139, 46);
             this.btnRefreshData.TabIndex = 12;
@@ -119,44 +120,10 @@
             this.lblStatus.TabIndex = 13;
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblCompetition
-            // 
-            this.lblCompetition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCompetition.AutoSize = true;
-            this.lblCompetition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompetition.Location = new System.Drawing.Point(432, 11);
-            this.lblCompetition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCompetition.Name = "lblCompetition";
-            this.lblCompetition.Size = new System.Drawing.Size(173, 36);
-            this.lblCompetition.TabIndex = 14;
-            this.lblCompetition.Text = "Competition";
-            this.lblCompetition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblCompetitionName
-            // 
-            this.lblCompetitionName.AutoSize = true;
-            this.lblCompetitionName.Location = new System.Drawing.Point(16, 70);
-            this.lblCompetitionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCompetitionName.Name = "lblCompetitionName";
-            this.lblCompetitionName.Size = new System.Drawing.Size(123, 17);
-            this.lblCompetitionName.TabIndex = 15;
-            this.lblCompetitionName.Text = "Competition Name";
-            // 
-            // cmbCompetitionName
-            // 
-            this.cmbCompetitionName.FormattingEnabled = true;
-            this.cmbCompetitionName.Location = new System.Drawing.Point(148, 66);
-            this.cmbCompetitionName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbCompetitionName.Name = "cmbCompetitionName";
-            this.cmbCompetitionName.Size = new System.Drawing.Size(160, 24);
-            this.cmbCompetitionName.TabIndex = 16;
-            this.cmbCompetitionName.SelectedValueChanged += new System.EventHandler(this.cmbCompetitionName_SelectedValueChanged);
-            // 
             // btnExportData
             // 
-            this.btnExportData.Location = new System.Drawing.Point(613, 562);
-            this.btnExportData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportData.Location = new System.Drawing.Point(722, 562);
+            this.btnExportData.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportData.Name = "btnExportData";
             this.btnExportData.Size = new System.Drawing.Size(139, 46);
             this.btnExportData.TabIndex = 12;
@@ -166,8 +133,8 @@
             // 
             // btnImportData
             // 
-            this.btnImportData.Location = new System.Drawing.Point(453, 562);
-            this.btnImportData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportData.Location = new System.Drawing.Point(562, 562);
+            this.btnImportData.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportData.Name = "btnImportData";
             this.btnImportData.Size = new System.Drawing.Size(139, 46);
             this.btnImportData.TabIndex = 12;
@@ -181,22 +148,77 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTestMode.AutoSize = true;
             this.lblTestMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTestMode.Location = new System.Drawing.Point(351, 53);
+            this.lblTestMode.Location = new System.Drawing.Point(701, 145);
             this.lblTestMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTestMode.Name = "lblTestMode";
             this.lblTestMode.Size = new System.Drawing.Size(0, 36);
             this.lblTestMode.TabIndex = 17;
             this.lblTestMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // lblCompetitionValue
+            // 
+            this.lblCompetitionValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCompetitionValue.AutoSize = true;
+            this.lblCompetitionValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompetitionValue.Location = new System.Drawing.Point(218, 68);
+            this.lblCompetitionValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCompetitionValue.Name = "lblCompetitionValue";
+            this.lblCompetitionValue.Size = new System.Drawing.Size(0, 36);
+            this.lblCompetitionValue.TabIndex = 18;
+            this.lblCompetitionValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSeasonValue
+            // 
+            this.lblSeasonValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSeasonValue.AutoSize = true;
+            this.lblSeasonValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeasonValue.Location = new System.Drawing.Point(218, 21);
+            this.lblSeasonValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSeasonValue.Name = "lblSeasonValue";
+            this.lblSeasonValue.Size = new System.Drawing.Size(0, 36);
+            this.lblSeasonValue.TabIndex = 20;
+            this.lblSeasonValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSetCompetition
+            // 
+            this.btnSetCompetition.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnSetCompetition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetCompetition.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnSetCompetition.Location = new System.Drawing.Point(23, 66);
+            this.btnSetCompetition.Name = "btnSetCompetition";
+            this.btnSetCompetition.Size = new System.Drawing.Size(183, 41);
+            this.btnSetCompetition.TabIndex = 21;
+            this.btnSetCompetition.Text = "Competition";
+            this.btnSetCompetition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSetCompetition.UseVisualStyleBackColor = true;
+            this.btnSetCompetition.Click += new System.EventHandler(this.btnSetCompetition_Click);
+            // 
+            // btnSetSeason
+            // 
+            this.btnSetSeason.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnSetSeason.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetSeason.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnSetSeason.Location = new System.Drawing.Point(23, 19);
+            this.btnSetSeason.Name = "btnSetSeason";
+            this.btnSetSeason.Size = new System.Drawing.Size(183, 41);
+            this.btnSetSeason.TabIndex = 22;
+            this.btnSetSeason.Text = "Season";
+            this.btnSetSeason.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSetSeason.UseVisualStyleBackColor = true;
+            this.btnSetSeason.Click += new System.EventHandler(this.btnSetSeason_Click);
+            // 
+            // MatchListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 672);
+            this.Controls.Add(this.btnSetSeason);
+            this.Controls.Add(this.btnSetCompetition);
+            this.Controls.Add(this.lblSeasonValue);
+            this.Controls.Add(this.lblCompetitionValue);
             this.Controls.Add(this.lblTestMode);
-            this.Controls.Add(this.cmbCompetitionName);
-            this.Controls.Add(this.lblCompetitionName);
-            this.Controls.Add(this.lblCompetition);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnImportData);
@@ -206,9 +228,9 @@
             this.Controls.Add(this.lblMatchList);
             this.Controls.Add(this.gridMatchList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "MatchListForm";
+            this.Text = "Match List";
             ((System.ComponentModel.ISupportInitialize)(this.gridMatchList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,12 +245,13 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRefreshData;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblCompetition;
-        private System.Windows.Forms.Label lblCompetitionName;
-        private System.Windows.Forms.ComboBox cmbCompetitionName;
         private System.Windows.Forms.Button btnExportData;
         private System.Windows.Forms.Button btnImportData;
         private System.Windows.Forms.Label lblTestMode;
+        private System.Windows.Forms.Label lblCompetitionValue;
+        private System.Windows.Forms.Label lblSeasonValue;
+        private System.Windows.Forms.Button btnSetCompetition;
+        private System.Windows.Forms.Button btnSetSeason;
     }
 }
 

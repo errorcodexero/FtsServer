@@ -392,7 +392,7 @@ namespace FirstTeamScouter_Server
             {
                 if (exit)
                 {
-                    Form1 formObj = (Form1)Application.OpenForms["Form1"];
+                    MatchListForm formObj = (MatchListForm)Application.OpenForms["Form1"];
                     formObj.LoadData();
                     this.Close();
                 }
