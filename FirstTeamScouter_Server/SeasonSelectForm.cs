@@ -19,13 +19,16 @@ namespace FirstTeamScouter_Server
             InitializeComponent();
             seasonID = Properties.Settings.Default.SeasonID;
             LoadSeasons();
-            if (seasonID < 0)
+            if (cmbSeasonYear != null && cmbSeasonYear.HasChildren)
             {
-                cmbSeasonYear.SelectedIndex = 1;
-            }
-            else
-            {
-                cmbSeasonYear.SelectedValue = seasonID;
+                if (seasonID < 0)
+                {
+                    cmbSeasonYear.SelectedIndex = 1;
+                }
+                else
+                {
+                    cmbSeasonYear.SelectedValue = seasonID;
+                }
             }
         }
 

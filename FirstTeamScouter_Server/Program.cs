@@ -15,7 +15,7 @@ namespace FirstTeamScouter_Server
     {
         // globals
 
-        public static Boolean TEST_MODE = true;
+        public static Boolean TEST_MODE = false;
 
         public static String conString = Properties.Settings.Default.FTS_ConnectionString;
             //"server=localhost;" +
