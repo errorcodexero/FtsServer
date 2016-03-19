@@ -207,6 +207,7 @@ namespace FirstTeamScouter_Server
                     long tablet_id = 0;
                     cmd.Parameters.Clear();
 
+                    /*
                     cmd.CommandText = 
                     "INSERT INTO team_match(tablet_id, team_id, match_id, competition_id, alliance_position, " +
                     "broke_down, no_move, lost_connection, starting_location, starting_location_X, starting_location_Y, starting_location_on_field, " +
@@ -234,6 +235,79 @@ namespace FirstTeamScouter_Server
                     "@auto_robot_stack_list, @team_match_notes, @tote_stacker, @can_kinger, @cooperative, " +
                     "@noodler, @ni, @tote_control_inside_robot, @tote_control_fork_lift, @tote_control_handle_grabber, " +
                     "@tote_control_drop_alot, @tote_control_great_control, @ready_to_export)";
+                    */
+
+                    cmd.CommandText =
+                    "INSERT INTO team_match(tablet_id, team_id, match_id, competition_id, alliance_position, broke_down, no_move, " +
+                    "lost_connection, starting_location, starting_location_X, starting_location_Y, starting_location_on_field, " +
+                    "auto_mode_saved, auto_final_location_X, auto_final_location_Y, auto_score, def_1_name, def_2_name, def_3_name, def_4_name, def_5_name, " +
+                    "tele_high_score, tele_high_miss, tele_low_score, tele_low_miss, tele_def_1_total_attempted, tele_def_1_total_crossed, tele_def_1_total_held, tele_def_1_total_manipulated, " +
+                    "tele_def_2_total_attempted, tele_def_2_total_crossed, tele_def_2_total_held, tele_def_2_total_manipulated, tele_def_3_total_attempted, tele_def_3_total_crossed, " +
+                    "tele_def_3_total_held, tele_def_3_total_manipulated, tele_def_4_total_attempted, tele_def_4_total_crossed, tele_def_4_total_held, tele_def_4_total_manipulated, " +
+                    "tele_def_5_total_attempted, tele_def_5_total_crossed, tele_def_5_total_held, tele_def_5_total_manipulated, tele_robot_action_challenge, tele_robot_action_capture, " +
+                    "tele_robot_action_climb, tele_robot_action_play_defense, team_match_notes, ready_to_export)" +
+                    "VALUES(@tablet_id, @team_id, @match_id, @competition_id, @alliance_position, @broke_down, @no_move, " +
+                    "@lost_connection, @starting_location, @starting_location_X, @starting_location_Y, @starting_location_on_field, " +
+                    "@auto_mode_saved, @auto_final_location_X, @auto_final_location_Y, @auto_score, @def_1_name, @def_2_name, @def_3_name, @def_4_name, @def_5_name, " +
+                    "@tele_high_score, @tele_high_miss, @tele_low_score, @tele_low_miss, @tele_def_1_total_attempted, @tele_def_1_total_crossed, @tele_def_1_total_held, @tele_def_1_total_manipulated, " +
+                    "@tele_def_2_total_attempted, @tele_def_2_total_crossed, @tele_def_2_total_held, @tele_def_2_total_manipulated, @tele_def_3_total_attempted, @tele_def_3_total_crossed, " +
+                    "@tele_def_3_total_held, @tele_def_3_total_manipulated, @tele_def_4_total_attempted, @tele_def_4_total_crossed, @tele_def_4_total_held, @tele_def_4_total_manipulated, " +
+                    "@tele_def_5_total_attempted, @tele_def_5_total_crossed, @tele_def_5_total_held, @tele_def_5_total_manipulated, @tele_robot_action_challenge, @tele_robot_action_capture, " +
+                    "@tele_robot_action_climb, @tele_robot_action_play_defense, @team_match_notes, @ready_to_export)";
+                    /*
+    _id,
+    tablet_id,
+    team_id,
+    match_id,
+    competition_id,
+    alliance_position,
+    broke_down,
+    no_move,
+    lost_connection,
+    starting_location,
+    starting_location_X,
+    starting_location_Y,
+    starting_location_on_field,
+    auto_mode_saved,
+    auto_final_location_X,
+    auto_final_location_Y,
+    auto_score,
+    def_1_name,
+    def_2_name,
+    def_3_name,
+    def_4_name,
+    def_5_name,
+    tele_high_score,
+    tele_high_miss,
+    tele_low_score,
+    tele_low_miss,
+    tele_def_1_total_attempted,
+    tele_def_1_total_crossed,
+    tele_def_1_total_held,
+    tele_def_1_total_manipulated,
+    tele_def_2_total_attempted,
+    tele_def_2_total_crossed,
+    tele_def_2_total_held,
+    tele_def_2_total_manipulated,
+    tele_def_3_total_attempted,
+    tele_def_3_total_crossed,
+    tele_def_3_total_held,
+    tele_def_3_total_manipulated,
+    tele_def_4_total_attempted,
+    tele_def_4_total_crossed,
+    tele_def_4_total_held,
+    tele_def_4_total_manipulated,
+    tele_def_5_total_attempted,
+    tele_def_5_total_crossed,
+    tele_def_5_total_held,
+    tele_def_5_total_manipulated,
+    tele_robot_action_challenge,
+    tele_robot_action_capture,
+    tele_robot_action_climb,
+    tele_robot_action_play_defense,
+    team_match_notes,
+    ready_to_export
+                     */
 
                     cmd.Parameters.AddWithValue("@tablet_id", tablet_id);
                     cmd.Parameters.AddWithValue("@team_id", 0);
