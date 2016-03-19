@@ -82,6 +82,12 @@
     <Compile Include="CompetitionSelectForm.Designer.cs">
       <DependentUpon>CompetitionSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportMatchListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportMatchListForm.Designer.cs">
+      <DependentUpon>ImportMatchListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MatchListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompetitionSelectForm.resx">
       <DependentUpon>CompetitionSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportMatchListForm.resx">
+      <DependentUpon>ImportMatchListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MatchListForm.resx">
       <DependentUpon>MatchListForm.cs</DependentUpon>

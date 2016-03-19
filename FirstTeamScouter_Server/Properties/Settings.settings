@@ -30,5 +30,8 @@
     <Setting Name="CompetitionID" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
+    <Setting Name="MatchListImportPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

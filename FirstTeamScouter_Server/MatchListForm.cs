@@ -236,5 +236,12 @@ namespace FirstTeamScouter_Server
                 this.LoadData();
             }
         }
+
+        private void btnImportMatchList_Click(object sender, EventArgs e)
+        {
+            if (this.competitionID < 0) return;
+            ImportMatchListForm importForm = new ImportMatchListForm(this.competitionID);
+            importForm.Show();
+        }
     }
 }
